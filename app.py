@@ -1,9 +1,11 @@
-from flask import Flask
+from flask import *
 
 app = Flask(__name__)
 
 @app.route("/")
-def index():
+def message():
 
-    return "Hello, it is a new web page/app!!!"
-    
+    return "<html><body><h1>Welcome to version 1 of this webpage</h1></body></html>"
+
+if __name__ == '__main__':
+    app.run(debug = True)
