@@ -55,7 +55,7 @@ workflows:
   deployment:
     jobs:
       - linting
-      - buildingdocker-image
+      - buildingdocker-image:
            requires:
             - linting
       
