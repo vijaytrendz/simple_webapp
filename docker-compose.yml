@@ -1,0 +1,8 @@
+version: "2.0"
+services:
+  web:
+      build: .
+      command: python app.py runserver 0.0.0.0:80
+      image: vijayramachandran/simple-webapp
+      ports:
+          - "7000:80"
