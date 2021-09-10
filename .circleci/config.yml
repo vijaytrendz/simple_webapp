@@ -56,3 +56,5 @@ workflows:
     jobs:
       - linting
       - buildingdocker-image
+      
+      #test
