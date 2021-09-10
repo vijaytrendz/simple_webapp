@@ -56,5 +56,8 @@ workflows:
     jobs:
       - linting
       - buildingdocker-image
+           requires:
+            - linting
+      
       
       #test
