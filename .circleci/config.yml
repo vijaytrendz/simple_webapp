@@ -83,7 +83,7 @@ workflows:
       - buildingdocker-image:
           requires:
             - linting
-      - aws-eks-installation
+      - aws-eks-installation:
           requires:
             - buildingdocker-image    
       - aws-eks/create-cluster:
