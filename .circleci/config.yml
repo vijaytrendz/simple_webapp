@@ -1,7 +1,8 @@
 version: 2.1
 
 orbs:
-#  aws-eks: circleci/aws-eks@0.2.3
+  aws-cli: circleci/aws-cli@2.0.3
+  aws-eks: circleci/aws-eks@0.2.3
   kubernetes: circleci/kubernetes@0.12.0
 
 executors:
@@ -32,12 +33,12 @@ jobs:
             . ~/.webapp/bin/activate
             make lint
   
-  aws-eks-installation:
-      - run:
-          name: install eksctl
-          command: |
-            mkdir -p eksctl_download; curl --silent --location --retry 5 "https://github.com/weaveworks/eksctl/releases/download/0.14.0/eksctl_Linux_amd64.tar.gz" | tar xz -C eksctl_download; chmod +x eksctl_download/eksctl
-            sudo mv eksctl_download/eksctl /usr/local/bin/
+ # aws-eks-installation:
+ #     - run:
+ #         name: install eksctl
+  #        command: |
+   #         mkdir -p eksctl_download; curl --silent --location --retry 5 "https://github.com/weaveworks/eksctl/releases/download/0.14.0/eksctl_Linux_amd64.tar.gz" | tar xz -C eksctl_download; chmod +x eksctl_download/eksctl
+   #         sudo mv eksctl_download/eksctl /usr/local/bin/
             
   buildingdocker-image:
     machine: true
@@ -83,13 +84,13 @@ workflows:
       - buildingdocker-image:
           requires:
             - linting
-      - aws-eks-installation:
-          requires:
-            - buildingdocker-image    
+ #     - aws-eks-installation:
+#          requires:
+ #           - buildingdocker-image
       - aws-eks/create-cluster:
           cluster-name: simple-webapp
           requires:
-            - aws-eks-installation
+            - buildingdocker-image
       - cluster-deploy:
           cluster-name: simple-webapp
           requires: 
