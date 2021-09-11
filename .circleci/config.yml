@@ -65,7 +65,7 @@ jobs:
           resource-name: deployment/simple-webapp
           
 orbs:
-  aws-eks: circleci/aws-eks@1.0.3
+  aws-eks: circleci/aws-eks@dev:alpha
   kubernetes: circleci/kubernetes@0.11.2
           
 workflows:
