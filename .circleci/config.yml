@@ -48,8 +48,8 @@ jobs:
             docker-compose up -d
             # List docker images
             # Push image to a docker repository
-#            docker tag simple-webapp vijayramachandran/simple-webapp
-#            docker push vijayramachandran/simple-webapp
+            docker tag simple-webapp vijayramachandran/simple-webapp
+            docker push vijayramachandran/simple-webapp
             
 workflows:
   deployment:
