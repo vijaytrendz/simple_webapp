@@ -1,4 +1,8 @@
 version: 2.1
+orbs:
+  aws-ecr-eks: signavio/aws-ecr-eks@2.4.0
+  kubernetes: circleci/kubernetes@0.12.0
+  
 executors:
   python:
     docker:
@@ -63,10 +67,6 @@ jobs:
           get-rollout-status: true
           resource-file-path: deployment.yml
           resource-name: deployment/simple-webapp
-          
-orbs:
-  aws-eks: circleci/aws-eks@dev:alpha
-  kubernetes: circleci/kubernetes@0.11.2
           
 workflows:
   deployment:
