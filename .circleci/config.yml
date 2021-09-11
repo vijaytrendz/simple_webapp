@@ -1,5 +1,4 @@
 version: 2.1
-
 executors:
   python:
     docker:
@@ -65,9 +64,9 @@ jobs:
           resource-file-path: deployment.yml
           resource-name: deployment/simple-webapp
           
-  orbs:
-     aws-eks: circleci/aws-eks@1.0.3
-     kubernetes: circleci/kubernetes@0.11.2
+orbs:
+  aws-eks: circleci/aws-eks@1.0.3
+  kubernetes: circleci/kubernetes@0.11.2
           
 workflows:
   deployment:
