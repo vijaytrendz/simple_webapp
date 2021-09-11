@@ -74,11 +74,11 @@ workflows:
     jobs:
       - linting
       - buildingdocker-image:
-           requires:
+          requires:
             - linting
       - aws-eks/create-cluster:
           cluster-name: simple-webapp
-           requires:
+          requires:
             - buildingdocker-image
       - cluster-deploy:
           cluster-name: simple-webapp
