@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  aws-eks: circleci/aws-eks@dev:alpha
+  aws-eks: circleci/aws-eks@1.0.3
   kubernetes: circleci/kubernetes@0.12.0
 
 executors:
@@ -78,6 +78,8 @@ workflows:
             - linting
       - aws-eks/create-cluster:
           cluster-name: simple-webapp
+           requires:
+            - buildingdocker-image
       - cluster-deploy:
           cluster-name: simple-webapp
           requires: 
