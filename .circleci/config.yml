@@ -123,7 +123,27 @@ workflows:
           cluster-name: simple-webapp
           requires:
             - buildingdocker-image
- #     - cluster-deploy:
-#          cluster-name: simple-webapp
-#          requires: 
-#            - create-small-cluster
+      - cluster-deploy:
+          cluster-name: simple-webapp
+          requires: 
+            - create-small-cluster
+      - aws-eks/update-container-image:
+          cluster-name: simple-webapp
+          container-image-updates: simple-webapp=vijayramachandran/simple-webapp
+          post-steps:
+              - kubernetes/delete-resource:
+                  resource-names: simple-webapp
+                  resource-types: deployment
+                  wait: true
+          record: true
+          requires: 
+            - cluster-deploy
+          resource-name: deployment/simple-webapp
+      - testcluster:
+          cluster-name: simple-webapp
+          requires: 
+            - aws-eks/update-container-image
+      - aws-eks/delete-cluster:
+          cluster-name: simple-webapp
+          requires: 
+            - check-cluster
