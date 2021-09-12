@@ -119,19 +119,12 @@ workflows:
       - buildingdocker-image:
           requires:
             - linting
-#     - aws-eks-installation:
-#          requires:
-#           - buildingdocker-image
-#      - aws-eks/create-cluster:
-#          cluster-name: simple-webapp
-#          requires:
-#            - buildingdocker-image
-      - create-small-cluster
+      - create-small-cluster:
           cluster-name: simple-webapp
       - delay:
           requires:
             - buildingdocker-image
-      - cluster-deploy:
-          cluster-name: simple-webapp
-          requires: 
-            - create-small-cluster
+ #     - cluster-deploy:
+#          cluster-name: simple-webapp
+#          requires: 
+#            - create-small-cluster
