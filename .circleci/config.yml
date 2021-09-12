@@ -111,6 +111,24 @@ jobs:
           get-rollout-status: true
           resource-file-path: deployment.yml
           resource-name: deployment/simple-webapp
+  
+  
+  testcluster:
+    executor: aws-eks/python3
+    parameters:
+      cluster-name:
+        description: |
+          Simple-webapp
+        type: string
+    steps:
+      - kubernetes/install
+      - aws-eks/update-kubeconfig-with-authenticator:
+          cluster-name: << parameters.cluster-name >>
+      - run:
+          name: testing kubernetes cluster
+          command: |
+            kubectl get nodes
+            kubectl get deployment
           
 workflows:
   deployment:
