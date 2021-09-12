@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: simplewebapp0.1
+  name: simple-webapp-1.0
   labels:
-    app: simplewebapp0.1
+    app: simple-webapp-1.0
   namespace: default
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: simplewebapp0.1
+      app: simple-webapp-1.0
   strategy:
     rollingUpdate:
       maxSurge: 40%
@@ -18,12 +18,12 @@ spec:
   template:
     metadata:
       labels:
-        app: simplewebapp0.1
+        app: simple-webapp-1.0
     spec:
       containers:
-        - image: vijayramachandran/simplewebapp0.1
+        - image: vijayramachandran/simple-webapp-1.0
           imagePullPolicy: Always
-          name: simplewebapp0.1
+          name: simple-webapp-1.0
           ports:
             - containerPort: 80
 
@@ -31,13 +31,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: simplewebapp0.1
+  name: simple-webapp-1.0
   labels:
-    app: simplewebapp0.1
+    app: simple-webapp-1.0
 spec:
   type: LoadBalancer
   selector:
-    app: simplewebapp0.1
+    app: simple-webapp-1.0
   ports:
     - port: 7000
       targetPort: 80
