@@ -164,4 +164,4 @@ workflows:
       - aws-eks/delete-cluster:
           cluster-name: simple-webapp
           requires: 
-            - check-cluster
+            - testcluster
