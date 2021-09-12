@@ -128,6 +128,7 @@ workflows:
 #            - buildingdocker-image
       - create-small-cluster
           cluster-name: simple-webapp
+      - delay:
           requires:
             - buildingdocker-image
       - cluster-deploy:
