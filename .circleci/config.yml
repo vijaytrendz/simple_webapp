@@ -161,10 +161,10 @@ workflows:
           cluster-name: simple-webappv1
           requires: 
             - aws-eks/update-container-image
-      - aws-eks/delete-cluster:
-          cluster-name: simple-webappv1
-          requires: 
-            - testcluster
+#      - aws-eks/delete-cluster:
+#          cluster-name: simple-webappv1
+#          requires: 
+#           - testcluster
             
             
             #testrun
